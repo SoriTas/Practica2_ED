@@ -249,8 +249,7 @@ void set_pixel (int i, int j, byte value);
     bool Load (const char * file_path);
 
     /**
-      * @brief Invierte una imagen.
-      
+      * @brief Invierte una imagen. 
       */
     void Invert();
 
@@ -271,7 +270,9 @@ void set_pixel (int i, int j, byte value);
 
 
 
-    // Baraja pseudoaleatoriamente las filas de una imagen.
+    /**
+     * @brief Baraja pseudoaleatoriamente las filas de una imagen.
+     */ 
     void ShuffleRows();
 } ;
 
