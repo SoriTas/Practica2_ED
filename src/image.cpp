@@ -159,3 +159,19 @@ bool Image::Save (const char * file_path) const {
     return WritePGMImage(file_path, p, rows, cols);
 }
 
+bool Load (const char * file_path){
+
+    unsigned char pob = this.LoadFromPGM(file_path);
+
+    if( pob == SUCCESS){
+
+        return true;
+
+    }
+    else{
+
+        return false;
+
+    }
+
+}
