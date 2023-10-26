@@ -248,7 +248,10 @@ void set_pixel (int i, int j, byte value);
       */
     bool Load (const char * file_path);
 
-    // Invierte
+    /**
+      * @brief Invierte una imagen.
+      
+      */
     void Invert();
 
     // Modifica el contraste de una Imagen .
