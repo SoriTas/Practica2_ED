@@ -21,3 +21,5 @@ Image::Image Crop(int nrow, int ncol, int height, int width) const{
     return aux;
 }
 
+Image::Image Image Zoom2X() const{
+    
