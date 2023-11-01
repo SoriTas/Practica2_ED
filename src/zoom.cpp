@@ -24,5 +24,5 @@ int main(int argc, char *argv[]){
   zoom = image.Zoom2x();
   zoom.crop(fila,columna,lado,lado);
 
-  subimage.Save(fich_rdo);
+  zoom.Save(fich_rdo);
 }

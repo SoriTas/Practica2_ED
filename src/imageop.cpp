@@ -35,7 +35,7 @@ Image Image::Zoom2X() const{
           interpol1[i][j] = (interpol1[i][j - 1] + interpol1[i][j + 1]) / 2;
          }
          else{
-             interpol1[i][j]
+             interpol1[i][j] = get_pixel(i,j/2);
          }
       }
     }
