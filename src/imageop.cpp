@@ -71,9 +71,24 @@ Image Image::Subsample(int factor) const{
         for(int l = j * factor;l < factor * j + factor;l++){
           media += get_pixel(m,l);
         }
-       aux.set_pixel(i,j,(media / (factor * factor));
+       aux.set_pixel(i,j,(media / (factor * factor)));
       }
     }
   }
   return aux;
+}
+
+void Image::AdjustContrast(byte in1, byte in2, byte out1, byte out2) {
+    if (in1 > in2 || out1 > out2 || in1 < 0 || in1 > 255 || in2 < 0 || in2 > 255 || out1 < 0 || out1 > 255 || out2 < 0 || out2 > 255) {
+        throw out_of_range("Factor out of range");
+       }
+
+    byte z = get_pixel(get_rows()*get_cols());
+
+    float aux = out1 + (((out2 - out1)/(in2 - in1)) * (z - in1));
+
+    byte zz = round(aux);
+
+    set_pixel(get_rows()*get_cols(), zz);
+
 }

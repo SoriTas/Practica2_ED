@@ -5,24 +5,30 @@
 
 using namespace std;
 
-int main(int argc, char *argv[]){
-  if (argc != 5){
-    throw out_of_range("Invalid arguments!");
+int main (int argc, char *argv[]){
+
+    cout << "jol2";
+
+    if (argc != 6){
+        cerr << "Error: Numero incorrecto de parametros.\n";
   }
-  
-  char * fich_orig = argv[1];
-  char * fich_rdo = argv[2];
-  int fila = atoi(argv[3]);
-  int columna = atoi(argv[4]);
-  int lado = atoi(argv[5]);
-  Image zoom;
-  
-  if(!image.Load(fich_orig)){
+
+    char *origen, *destino;
+    int fila, columna, lado;
+
+  origen = argv[1];
+  destino = argv[2];
+  fila = atoi(argv[3]);
+  columna = atoi(argv[4]);
+  lado = atoi(argv[5]);
+  Image zoom, image;
+
+  if(!image.Load(origen)){
     cerr << "Error: No pudo leerse imagen";
   }
 
-  zoom = image.Zoom2x();
-  zoom.crop(fila,columna,lado,lado);
+  zoom.Crop(fila,columna,lado,lado);
+  zoom = image.Zoom2X();
 
-  zoom.Save(fich_rdo);
+  zoom.Save(destino);
 }

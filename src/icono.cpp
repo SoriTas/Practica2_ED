@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
     char * fich_rdo = argv[2];
     int factor = atoi(argv[3]);
     
-    Image icon;
+    Image icon, image;
   
     if(!image.Load(fich_orig)){
       cerr << "Error: No pudo leerse imagen";
