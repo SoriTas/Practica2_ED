@@ -21,7 +21,7 @@ Image Image::Crop(int nrow, int ncol, int height, int width) const{
     return aux;
 }
 
-Image::Image Image Zoom2X() const{
+Image Image::Image Zoom2X() const{
   Image aux;
   int rows = get_rows;
   int cols = get_cols;
@@ -30,8 +30,9 @@ Image::Image Image Zoom2X() const{
   for (int i = 0;i < rows;i++){
     if (i % 2 == 0){
       for (int j = 0;j < cols * 2 - 1;j++){
-         if (j % 2 != 0) 
+         if (j % 2 != 0) {
           interpol1[i][j] = (interpol1[i][j - 1] + interpol1[i][j + 1]) / 2;
+         }
       }
     }
   }
@@ -47,6 +48,26 @@ Image::Image Image Zoom2X() const{
         aux.set_pixel(i,j,round(interpol1[i][j]));
       }
     }
-  }
 }
 
+Image::Image Subsample(int factor) const{
+  if (factor < 0){
+    throw out_of_range("Factor out of range");
+  }
+  Image aux;
+  int rows = get_rows;
+  int cols = get_cols;
+  int media;
+  byte Icon[rows / factor][cols / factor];
+  for(int i = 0 ; i < rows/factor ; i++){
+    for(int j = 0; j < factor; j++){
+      for(int m = i * factor; m < factor * factor;m++){
+        for(int l = j * factor;l < factor * factor;l++){
+          media += get_pixel(m,l);
+        } 
+      }
+      aux.set_pixel(i,j,(media / factor)); 
+    }
+  }
+  return aux;
+}
