@@ -9,6 +9,8 @@
 
 #include <cassert>
 
+using namespace std;
+
 Image Image::Crop(int nrow, int ncol, int height, int width) const{
     Image aux(height, width);
 
@@ -21,17 +23,19 @@ Image Image::Crop(int nrow, int ncol, int height, int width) const{
     return aux;
 }
 
-Image Image::Image Zoom2X() const{
-  Image aux;
-  int rows = get_rows;
-  int cols = get_cols;
-  byte interpol1[rows * 2 - 1][cols * 2 - 1]
+Image Image::Zoom2X() const{
+  int rows = get_rows();
+  int cols = get_cols();
+  byte interpol1[rows * 2 - 1][cols * 2 - 1];
   Image aux(rows * 2 - 1,cols * 2 - 1);
   for (int i = 0;i < rows;i++){
     if (i % 2 == 0){
       for (int j = 0;j < cols * 2 - 1;j++){
          if (j % 2 != 0) {
           interpol1[i][j] = (interpol1[i][j - 1] + interpol1[i][j + 1]) / 2;
+         }
+         else{
+             interpol1[i][j]
          }
       }
     }
@@ -48,15 +52,17 @@ Image Image::Image Zoom2X() const{
         aux.set_pixel(i,j,round(interpol1[i][j]));
       }
     }
+
+  return aux;
 }
 
-Image::Image Subsample(int factor) const{
+Image Image::Subsample(int factor) const{
   if (factor < 0){
     throw out_of_range("Factor out of range");
   }
   Image aux;
-  int rows = get_rows;
-  int cols = get_cols;
+  int rows = get_rows();
+  int cols = get_cols();
   int media;
   byte Icon[rows / factor][cols / factor];
   for(int i = 0 ; i < rows/factor ; i++){
@@ -65,7 +71,7 @@ Image::Image Subsample(int factor) const{
         for(int l = j * factor;l < factor;l++){
           media += get_pixel(m,l);
         }
-       aux.set_pixel(i,j,(media / factor)) 
+       aux.set_pixel(i,j,(media / factor));
       }
     }
   }
