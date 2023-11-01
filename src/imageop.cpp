@@ -66,12 +66,12 @@ Image Image::Subsample(int factor) const{
   int media;
   byte Icon[rows / factor][cols / factor];
   for(int i = 0 ; i < rows/factor ; i++){
-    for(int j = 0; j < factor; j++){
-      for(int m = i * factor; m < factor ;m++){
-        for(int l = j * factor;l < factor;l++){
+    for(int j = 0; j < cols/factor; j++){
+      for(int m = i * factor; m < factor * i + factor ;m++){
+        for(int l = j * factor;l < factor * j + factor;l++){
           media += get_pixel(m,l);
         }
-       aux.set_pixel(i,j,(media / factor));
+       aux.set_pixel(i,j,(media / (factor * factor));
       }
     }
   }
