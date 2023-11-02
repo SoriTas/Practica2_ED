@@ -3,7 +3,8 @@
   * @brief Fichero cabecera para la E/S de imágenes
   *
   * Permite la E/S de archivos de tipo PGM,PPM
-  *
+  * @author Manuel López García
+  * @author Pablo Soriano Fleitas
   */
 
 #ifndef _IMAGEN_ES_H_
