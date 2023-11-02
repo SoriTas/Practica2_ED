@@ -1,6 +1,8 @@
 /*!
  * @file image.h
  * @brief Cabecera para la clase Image
+ * @author Manuel López García
+ * @author Pablo Soriano Fleitas
  */
 
 #ifndef _IMAGEN_H_
