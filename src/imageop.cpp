@@ -100,12 +100,34 @@ void Image::AdjustContrast(byte in1, byte in2, byte out1, byte out2) {
         throw out_of_range("Factor out of range");
        }
 
-    byte z = get_pixel(get_rows()*get_cols());
+    byte min = out1;
+    byte max = out2;
+    byte a = in1;
+    byte b = in2;
+    int valor=0;
+    byte z;
+    double aux;
 
-    float aux = out1 + (((out2 - out1)/(in2 - in1)) * (z - in1));
+    aux = ((int)max-(int)min)*1.0/((int)b-(int)a);
 
-    byte zz = round(aux);
+    for (int i=0; i < this.size(); i++){
 
-    set_pixel(get_rows()*get_cols(), zz);
+        z = get_pixel(i);
 
+        if( z >= a && z<=b){
+
+            valor = (unsigned int)min + round(cociente*((unsigned int)z-(unsigned int)a));
+
+            set_pixel(i,(byte)valor);
+
+        }
+
+        else{
+
+            set_pixel (i,z);
+
+        }
+
+
+    }
 }
