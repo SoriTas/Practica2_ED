@@ -26,9 +26,26 @@ Image Image::Crop(int nrow, int ncol, int height, int width) const{
 Image Image::Zoom2X() const{
   int rows = get_rows();
   int cols = get_cols();
-  byte interpol1[rows * 2 - 1][cols * 2 - 1];
   Image aux(rows * 2 - 1,cols * 2 - 1);
-  for (int i = 0;i < rows;i++){
+  for(int i = 0; i < rows * 2 - 1,cols * 2 - 1;i++){
+      for(int j = 0;j < cols * 2 - 1;j++){
+        if(i % 2 == 0 && j % 2 == 0){
+          aux.set_pixel(i,j,get_pixel(i/2,j/2) );
+        }
+        else if(i % 2 == 0 && j != 0){
+          aux.set_pixel(i,j,(get_pixel(i/2,(j-1)/2) + get_pixel(i/2,(j + 1)/2)/2));
+        }
+        else if(i % 2 != 0, j == 0){
+          aux.set_pixel(i,j,(get_pixel(((i-1)/2),j) + get_pixel((i+1)/2,j)/2));
+        }
+        else{
+          aux.set_pixel(i,j,(get_pixel((i-1)/2,j)+get_pixel((i+1)/2,j)+get_pixel(((i-1)/2),j) + get_pixel((i+1)/2,j)/2)/4);
+        }
+      }
+    }
+  return aux;
+}
+  /*for (int i = 0;i < rows;i++){
     if (i % 2 == 0){
       for (int j = 0;j < cols * 2 - 1;j++){
          if (j % 2 != 0) {
@@ -55,7 +72,7 @@ Image Image::Zoom2X() const{
 
   return aux;
 }
-
+*/
 Image Image::Subsample(int factor) const{
   if (factor < 0){
     throw out_of_range("Factor out of range");

@@ -6,7 +6,7 @@
 using namespace std;
 
 int main(int argc, char *argv[]){
-    if (argc != 3){
+    if (argc != 4){
         throw out_of_range("Invalid arguments!");
     }
     char * fich_orig = argv[1];

@@ -27,7 +27,7 @@ int main (int argc, char *argv[]){
     cerr << "Error: No pudo leerse imagen";
   }
 
-  zoom.Crop(fila,columna,lado,lado);
+  image = image.Crop(fila,columna,lado,lado);
   zoom = image.Zoom2X();
 
   zoom.Save(destino);
